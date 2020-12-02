@@ -43,6 +43,9 @@ export default {
       // this.publicKey = this.computer.db.wallet.getPublicKey().toString();
       console.log(this.computer);
       // console.log(this.computer.db.wallet.getPublicKey().toString());
+      
+      // why can't we get the above line to work??
+    
     },
   },
 };
