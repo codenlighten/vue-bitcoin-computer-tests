@@ -1,63 +1,49 @@
 <template>
   <div class="wallet">
-    <h2>Wallet</h2>
+    <h2>Wallet#2</h2>
     <form>
-      <input v-model="user.name" type="text" placeholder="name" />
-      <input v-model="user.mnemonic" type="text" placeholder="mnemonic" />
+      <input v-model="mnemonic" type="text" placeholder="mnemonic" />
       <input @click.prevent="onSubmit" type="submit" />
     </form>
-    <div v-if="identifyScreen" class="identification">
-      <h4>Your Name is: {{ user.name }}</h4>
-      <h4>Your mnemonic is:{{ user.mnemonic }}</h4>
-      <h4>Your Public Address is:</h4>
-      <h4>Your Balance is:</h4>
-      <div class="express">
-        <form>
-          <input
-            v-model="expression"
-            type="text"
-            placeholder="What's on your Mind?"
-          />
-          <input @click.prevent="expressMe" type="submit" />
-        </form>
-        <div v-if="express" class="statement">
-          <h4>Your Statement is: {{ expression }}</h4>
-        </div>
-      </div>
-    </div>
+    <form v-if="login">
+      <br />
+      <input type="text" placeholder="song title" /> <br />
+      <input type="text" placeholder="artist" /> <br />
+      <input type="text" placeholder="url" /> <br />
+      <input type="submit" placeholder="Create Publishing Token" />
+    </form>
+    <h3>{{}}</h3>
   </div>
 </template>
 
 <script>
-// import Computer from "bitcoin-computer";
-// const computer = new Computer({
-//   seed: "",
-//   chain: "BSV",
-//   network: "testnet",
-// });
-import { v4 as uuidv4 } from "uuid";
-
+import Computer from "bitcoin-computer";
+// hospital antique tip ghost garage sign siege kit general tunnel tower expand
 export default {
   name: "App",
   data() {
     return {
-      user: { name: "", mnemonic: "", id: uuidv4() },
-      expression: "",
-      expressions: [],
-      identifyScreen: false,
-      express: false,
+      computer: {},
+      // mnemonic: "",
+      publicKey: "",
+      balance: "",
+      login: false,
     };
   },
   methods: {
     onSubmit() {
-      this.identifyScreen = true;
-      console.log(this.user.name, this.user.mnemonic, this.user.id);
-    },
-    expressMe() {
-      this.express = true;
-      this.expressions.push(this.expression);
-      console.log(this.expressions);
-      console.log(this.expression);
+      async () =>
+        (this.computer = new Computer({
+          seed:
+            "hospital antique tip ghost garage sign siege kit general tunnel tower expand",
+          chain: "BSV",
+          network: "testnet",
+        }));
+
+      this.login = true;
+      // this.publicKey = this.computer.db.wallet.getPublicKey().toString();
+      console.log(this.computer);
+      // console.log(this.computer.db.wallet.getPublicKey().toString());
     },
   },
 };
@@ -74,3 +60,4 @@ export default {
 }
 </style>
   
+
