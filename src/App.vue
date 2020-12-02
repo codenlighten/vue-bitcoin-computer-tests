@@ -32,13 +32,12 @@ export default {
   },
   methods: {
     onSubmit() {
-      async () =>
-        (this.computer = new Computer({
+      this.computer = new Computer({
           seed:
             "hospital antique tip ghost garage sign siege kit general tunnel tower expand",
           chain: "BSV",
           network: "testnet",
-        }));
+        });
 
       this.login = true;
       // this.publicKey = this.computer.db.wallet.getPublicKey().toString();
